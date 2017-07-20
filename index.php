@@ -1,8 +1,7 @@
 <?php
 
 include 'model.php';
-$users=getUsers();
-print_r($users);
+
 
 echo "<br>";
 if (isAdmin("admin")) {
