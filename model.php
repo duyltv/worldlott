@@ -4,22 +4,43 @@
  * @brief This file contains functions and variables to access database and return data object
  */
 
-include 'config.php';
+require_once 'config.php';
 
+function createConnection() {
+	// Create connection
+	$conn = mysqli_connect(SERVER_NAME, USERNAME, PASSWORD, DATABASE_NAME);
 
-$servername = $SERVER_NAME;
-$username = $USERNAME;
-$password = $PASSWORD;
-$dbname = $DATABASE_NAME;
+	if (!$conn) {
+		echo "Error: Unable to connect to MySQL." . PHP_EOL;
+		echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
+		echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
+		exit;
+	}
+	return $conn;
+}
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+function readTable($tableName) {
+	$conn = createConnection();
+	$sql = 'SELECT * FROM '.$tableName.';';
+	$result = mysqli_query($conn, $sql);
+
+	$data_object = array();
+
+	// output data of each row
+	while($row = mysqli_fetch_array($result)) {
+		array_push($data_object, $row);
+	}
+
+	mysqli_close($conn);
+
+	return $data_object;
 }
 
 
-$conn->close();
+// Include all models
+foreach (glob("model/*.php") as $filename)
+{
+	include_once $filename;
+}
 
 ?>

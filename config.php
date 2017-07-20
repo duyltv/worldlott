@@ -4,9 +4,9 @@
  * @brief This file contains data config for the page
  */
 
-$SERVER_NAME = "localhost";
-$DATABASE_NAME = "worldlott";
-$USERNAME = "root";
-$PASSWORD = "1234567890";
+define('SERVER_NAME', 'localhost');
+define('DATABASE_NAME', 'worldlott');
+define('USERNAME', 'root');
+define('PASSWORD', '1234567890');
 
 ?>

@@ -1,10 +1,14 @@
-<html>
-<head>
-<title>
-Test site
-</title>
-</head>
-<body>
-<?php echo "123"; ?>
-</body>
-</html>
+<?php
+
+include 'model.php';
+$users=getUsers();
+print_r($users);
+
+echo "<br>";
+if (isAdmin("admin")) {
+	echo "Admin here";
+} else {
+	echo "Not admin";
+}
+
+?>
