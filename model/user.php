@@ -1,7 +1,5 @@
 <?php
 
-include_once 'model.php';
-
 function getUsers() {
 	$user_table = readTable("user");
 
