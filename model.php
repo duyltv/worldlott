@@ -36,6 +36,12 @@ function readTable($tableName) {
 	return $data_object;
 }
 
+function deleteRecordTable($tableName, $id) {
+	$conn = createConnection();
+	$sql = 'DELETE FROM '.$tableName.'WHERE id='. $id . ';';
+	$result = mysqli_query($conn, $sql);
+}
+
 
 // Include all models
 foreach (glob("model/*.php") as $filename)
