@@ -38,8 +38,10 @@ function readTable($tableName) {
 
 function deleteRecordTable($tableName, $id) {
 	$conn = createConnection();
-	$sql = 'DELETE FROM '.$tableName.'WHERE id='. $id . ';';
+	$sql = 'DELETE FROM '.$tableName.' WHERE id='. $id . ';';
 	$result = mysqli_query($conn, $sql);
+
+	mysqli_close($conn);
 }
 
 
