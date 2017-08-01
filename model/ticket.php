@@ -59,6 +59,30 @@ function getPrize($ticket_content, $win_ticket_content) {
 	return -1;
 }
 
+/*
+ * Function: getPrizeById
+ * @brief: Return an integer that means the prize of the ticket
+ * @param: $ticket_id is the id of considering ticket
+ */
+function getPrizeById($ticket_id) {
+
+	$ticket_table = getTickets();
+	$win_number_table = getWinNumbers();
+
+	foreach ($ticket_table as $ticket)
+	{
+		if ($ticket['id'] == $ticket_id) {
+			foreach ($win_number_table as $win_number) {
+				if ($ticket['bought_for_date'] == $win_number['win_on']) {
+					return getPrize($ticket['content'], $win_number['content']);
+				}
+			}
+		}
+	}
+
+	return -1;
+}
+
 
 
 /*
