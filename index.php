@@ -1,6 +1,6 @@
 <?php
 
-include 'model.php';
+include 'function.php';
 
 
 echo getPrizeById(2);
